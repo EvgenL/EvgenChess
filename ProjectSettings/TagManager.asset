@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: CellSprites
+    uniqueID: 4213565725
+    locked: 0
