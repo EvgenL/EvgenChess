@@ -31,5 +31,10 @@ namespace src.core
             BlacksPlayer = new Player(ChessSide.Blacks);
         }
 
+        public void OnCellClicked(CellPosition pos)
+        {
+            
+        }
+
     }
 }

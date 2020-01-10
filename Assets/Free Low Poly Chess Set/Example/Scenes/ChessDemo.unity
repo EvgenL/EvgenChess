@@ -2261,7 +2261,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: The Chess
+  m_Text: TheChess
 --- !u!222 &1542024502
 CanvasRenderer:
   m_ObjectHideFlags: 0

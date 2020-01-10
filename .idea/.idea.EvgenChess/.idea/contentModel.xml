@@ -19,7 +19,7 @@
         <e p="MainMenu.cs" t="Include" />
         <e p="src" t="Include">
           <e p="CameraMouseInput.cs" t="Include" />
-          <e p="CellsContainer.cs" t="Include" />
+          <e p="CellsInput.cs" t="Include" />
           <e p="core" t="Include">
             <e p="CellPosition.cs" t="Include" />
             <e p="ChessActor.cs" t="Include" />

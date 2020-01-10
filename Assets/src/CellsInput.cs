@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using src.core;
 using UnityEngine;
 
-public class CellsContainer : MonoBehaviour
+public class CellsInput : MonoBehaviour
 {
     [SerializeField] private Sprite _spriteCellActive;
     [SerializeField] private Sprite _spriteCellHovered;
