@@ -6351,7 +6351,7 @@ GameObject:
   - component: {fileID: 2658084741525653466}
   - component: {fileID: 2670713068641789188}
   m_Layer: 0
-  m_Name: CellsContainer
+  m_Name: GridContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6392,7 +6392,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteCellActive: {fileID: 21300000, guid: 965ab706d490d474684713e7a9436885, type: 3}
-  _spriteCellHovered: {fileID: 21300000, guid: 9fd42679944b30248b17d1d11105f90c, type: 3}
+  _spriteCellSelected: {fileID: 21300000, guid: 9fd42679944b30248b17d1d11105f90c,
+    type: 3}
 --- !u!1 &6935682895183669347
 GameObject:
   m_ObjectHideFlags: 0

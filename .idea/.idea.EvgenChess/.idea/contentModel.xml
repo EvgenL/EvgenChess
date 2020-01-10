@@ -6,8 +6,6 @@
     <e p="C:\Users\kitae\Documents\Unity Projects\EvgenChess" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="CameraController.cs" t="Include" />
-        <e p="CameraManager.cs" t="Include" />
         <e p="Free Low Poly Chess Set" t="Include">
           <e p="Example" t="Include">
             <e p="Scripts" t="Include">
@@ -16,24 +14,34 @@
           </e>
           <e p="README.txt" t="Include" />
         </e>
-        <e p="MainMenu.cs" t="Include" />
         <e p="src" t="Include">
-          <e p="CameraMouseInput.cs" t="Include" />
-          <e p="CellsInput.cs" t="Include" />
           <e p="core" t="Include">
-            <e p="CellPosition.cs" t="Include" />
             <e p="ChessActor.cs" t="Include" />
             <e p="ChessSide.cs" t="Include" />
-            <e p="GameManager.cs" t="Include" />
+            <e p="grid" t="Include">
+              <e p="CellPosition.cs" t="Include" />
+              <e p="GridContainer.cs" t="Include" />
+            </e>
+            <e p="managers" t="Include">
+              <e p="GameManager.cs" t="Include" />
+              <e p="InputManager.cs" t="Include" />
+            </e>
             <e p="Player.cs" t="Include" />
             <e p="StaticParameters.cs" t="Include" />
             <e p="Turn.cs" t="Include" />
             <e p="TurnsManager.cs" t="Include" />
           </e>
-          <e p="InputManager.cs" t="Include" />
+          <e p="input" t="Include">
+            <e p="CameraController.cs" t="Include" />
+            <e p="CameraMouseInput.cs" t="Include" />
+          </e>
           <e p="renderer" t="Include">
             <e p="BoardRenderer.cs" t="Include" />
             <e p="CellRenderer.cs" t="Include" />
+            <e p="GridUiRenderer.cs" t="Include" />
+          </e>
+          <e p="ui" t="Include">
+            <e p="MainMenu.cs" t="Include" />
           </e>
         </e>
       </e>

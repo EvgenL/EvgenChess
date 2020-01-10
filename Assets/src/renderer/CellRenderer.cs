@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using src.core;
 using UnityEngine;
 
 public class CellRenderer : MonoBehaviour
 {
+    public CellPosition Pos;
+    
     public delegate void CellMouseEvent(CellRenderer cellRenderer);
     
     public event CellMouseEvent OnMouseEntered;
     public event CellMouseEvent OnMouseExited;
     public event CellMouseEvent OnMouseDowned;
+    public event CellMouseEvent OnMouseUpped;
 
     private Sprite _normalSprite;
     public SpriteRenderer spriteRenderer { get; private set; }
@@ -32,16 +36,21 @@ public class CellRenderer : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        OnMouseEntered(this);
+        OnMouseEntered?.Invoke(this);
     }
 
     private void OnMouseExit()
     {
-        OnMouseExited(this);
+        OnMouseExited?.Invoke(this);
     }
 
     private void OnMouseDown()
     {
-        OnMouseDowned(this);
+        OnMouseDowned?.Invoke(this);
+    }
+    
+    private void OnMouseUp()
+    {
+        OnMouseUpped?.Invoke(this);
     }
 }

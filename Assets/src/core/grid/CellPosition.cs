@@ -4,6 +4,12 @@ namespace src.core
 {
     public class CellPosition
     {
+        public CellPosition(int row, int col)
+        {
+            Row = row;
+            Col = (char) (col + StaticParameters.BOARD_FIRST_CHAR);
+        }
+        
         public int Row
         {
             set
@@ -43,8 +49,10 @@ namespace src.core
             char COL = char.ToUpperInvariant(col);
             return COL <= StaticParameters.BOARD_LAST_CHAR && COL >= StaticParameters.BOARD_FIRST_CHAR;
         }
-        
-        
-        
+
+        public override string ToString()
+        {
+            return Col + Row.ToString();
+        }
     }
 }
