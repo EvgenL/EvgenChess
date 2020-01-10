@@ -13,7 +13,7 @@ namespace src.core
 
         public ChessActorBase(ChessSide side)
         {
-            
+            this.Side = side;
         }
 
         public void OnMyTurn()
