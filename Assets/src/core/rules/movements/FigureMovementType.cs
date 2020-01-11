@@ -1,4 +1,6 @@
-﻿namespace src.core.rules
+﻿using src.core.grid;
+
+namespace src.core.rules
 {
     public abstract class FigureMovementType
     {
@@ -8,5 +10,7 @@
         {
             Range = range;
         }
+
+        public abstract bool PossibleToMove(CellPosition from, CellPosition to, Board board);
     }
 }

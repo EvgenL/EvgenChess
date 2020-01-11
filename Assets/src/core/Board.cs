@@ -26,6 +26,14 @@ namespace src.core
             return CurrentSetup.GetFigureByPos(pos);
         }
 
+        public bool AttackingSameTeam(CellPosition from, CellPosition to)
+        {
+            Figure a = GetFigure(from);
+            Figure b = GetFigure(to);
+
+            return a != null && b != null && a.Side == b.Side;
+        }
+
         public void ApplyTurn(Turn turn)
         {
             foreach (var action in turn.Actions)

@@ -8,12 +8,12 @@ namespace src.core.rules
         public Figure TakenFigure;
         public CellPosition TakenPos;
         
-        public TakeAction (Turn turn) : base(turn.MovedFigure, turn.MovedFrom, turn.MovedTo)
+        public TakeAction (Turn turn) : base(turn.MovedFigure, turn.MovingFrom, turn.MovingTo)
         {
             SortingPower = 0; // take action has to be done firstmost
             
-            TakenFigure = turn.board.GetFigure(turn.MovedTo);
-            TakenPos = turn.MovedTo;
+            TakenFigure = turn.board.GetFigure(turn.MovingTo);
+            TakenPos = turn.MovingTo;
         }
     }
 }

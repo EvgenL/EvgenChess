@@ -24,7 +24,7 @@ namespace src.core.rules.ruleList
                 return new ChessAction[0];
             }
             
-            Figure figureToTake = turn.board.GetFigure(turn.MovedTo);
+            Figure figureToTake = turn.board.GetFigure(turn.MovingTo);
             
             return new ChessAction[] { new MoveAction(turn) };
         }

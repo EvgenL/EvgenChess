@@ -12,6 +12,8 @@ namespace src.core.rules
             // add new Castelling
             _rules.Add(new Pawn());
             _rules.Add(new King());
+            _rules.Add(new Rook());
+            _rules.Add(new Knight());
         }
         
         public Turn ValidateTurn(Turn turn)

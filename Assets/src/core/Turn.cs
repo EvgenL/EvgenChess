@@ -10,8 +10,8 @@ namespace src.core
         public List<ChessAction> Actions = new List<ChessAction>();
         
         public Figure MovedFigure;
-        public CellPosition MovedFrom;
-        public CellPosition MovedTo;
+        public CellPosition MovingFrom;
+        public CellPosition MovingTo;
 
         // todo to buffered board state
         public Board board;
@@ -20,8 +20,8 @@ namespace src.core
         {
             this.board = board;
             MovedFigure = board.GetFigure(from);
-            MovedFrom = from;
-            MovedTo = to;
+            MovingFrom = from;
+            MovingTo = to;
         }
 
         public static Turn CreateIfPossible(RulesValidator validator, Board _board, CellPosition from, CellPosition to)

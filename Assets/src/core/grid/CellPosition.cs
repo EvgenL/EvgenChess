@@ -47,9 +47,9 @@ namespace src.core.grid
             return !a.Equals(b);
         }
 
-        public bool Valid()
+        public static bool Valid(int row, int col)
         {
-            return InBounds(Row) && InBounds(Col);
+            return InBounds(row) && InBounds(col);
         }
         
     }
