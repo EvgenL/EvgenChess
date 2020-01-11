@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using src.core.figures;
 using src.core.grid;
 using src.core.rules;
@@ -13,13 +14,14 @@ namespace src.core.managers
         public static GameManager Instance;
 
         [SerializeField] private MainMenu _mainMenu;
+        [SerializeField] private GameUi _gameUi;
         [SerializeField] private CameraController _cameraController;
-        [SerializeField] private GridContainer _gridContainer;
         [SerializeField] private InputManager _inputManager;
         [SerializeField] private FiguresContainer _figuresContainer;
-        
-        private Player _whitesPlayer;
-        private Player _blacksPlayer;
+        [SerializeField] private AudionManager _audionManager;
+
+        public ChessSide WhoseTurn { get; private set; }
+        public ChessSide OtherPlayer => (ChessSide)((int)(WhoseTurn + 1) % 2);
 
         private Board _board;
         private RulesValidator _validator;
@@ -50,23 +52,44 @@ namespace src.core.managers
         
         public void OpenMenu()
         {
-            _mainMenu.Show(); 
+            _mainMenu.Show();
+            _gameUi.Hide();
         }
 
         public void StartGame()
         {
             _mainMenu.Hide();
+            _gameUi.Show();
+            SetTurn(ChessSide.Whites);
             
             _inputManager.EnableInput();
             _cameraController.EnablePlayerControl();
             
             _turnsHistory = new Queue<Turn>();
             
-            _whitesPlayer = new Player(ChessSide.Whites);
-            _blacksPlayer = new Player(ChessSide.Blacks);
+            _board = new Board(_figuresContainer);
+        }
+
+        public void EndGame()
+        {
+            _inputManager.DisableInput();
+            OpenMenu();
+        }
+
+        public void GiveUp()
+        {
             
-            _board = new Board(_whitesPlayer, _blacksPlayer, _figuresContainer);
-            _figuresContainer.SetBoard(_board);
+        }
+
+        public void Draw()
+        {
+            
+        }
+
+        public bool CellCanBeSelected(CellPosition pos)
+        {
+            Figure fig = _board.GetFigure(pos);
+            return fig == null || fig.Side == WhoseTurn;
         }
 
         private void TryDoTurn(CellPosition from, CellPosition to)
@@ -79,11 +102,40 @@ namespace src.core.managers
                 Debug.Log("Doing turn from " + from + " to " + to);
                 _turnsHistory.Enqueue(turn);
                 _board.ApplyTurn(turn);
+                SetTurn(OtherPlayer);
+                PlaySounds(turn);
             }
             else
             {
-                // ui cancel turn
+                // todo ui cancel turn
+                _audionManager.PlayNo();
             }
+        }
+
+        private void SetTurn(ChessSide whoseTurn)
+        {
+            WhoseTurn = whoseTurn;
+            _validator.WhoseTurn = WhoseTurn;
+            _gameUi.SetTurn(WhoseTurn);
+        }
+
+        private void PlaySounds(Turn turn)
+        {
+            var actions = turn.Actions;
+            if (actions.Count > 0)
+            {
+                var action = actions.OrderByDescending(i => i.SortingPower).First();
+
+                if (action is TakeAction)
+                {
+                    _audionManager.PlayTake();
+                }
+                else 
+                {
+                    _audionManager.PlayBonk();
+                }
+            }
+
         }
         
     }

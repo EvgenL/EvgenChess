@@ -6,7 +6,7 @@ namespace src.core.rules
     public class RulesValidator
     {
         private List<Rule> _rules = new List<Rule>();
-        
+        public ChessSide WhoseTurn;
         public RulesValidator()
         {
             _rules.Add(new Castelling());
@@ -22,6 +22,9 @@ namespace src.core.rules
         
         public Turn ValidateTurn(Turn turn)
         {
+            if (turn.board.HasFigure(turn.MovingFrom) 
+                && turn.board.GetFigure(turn.MovingFrom).Side != WhoseTurn) return null;
+            
             foreach (var rule in _rules)
             {
                 if (rule.CanDoTurn(turn))

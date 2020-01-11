@@ -120,6 +120,8 @@ namespace src.core.figures
             var fig = GetFigureByPos(from);
             fig.PrevPos = from;
             fig.CurrentPos = to;
+            fig.EverMoved = true;
+            // todo check under attack
         }
 
         public Figure GetFigureByPos(CellPosition pos)

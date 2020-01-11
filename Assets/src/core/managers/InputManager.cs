@@ -6,27 +6,27 @@ namespace src.core.managers
     public class InputManager : MonoBehaviour
     {
         public static InputManager Instance;
-        
-        [SerializeField] private GridContainer _gridContainer;
 
-        private CellPosition _hoveredCell;
-        private CellPosition _selectedCell;
-        private CellPosition _dragStartCell;
-        private bool _isCellSelected = false;
-        private bool _isMouseHeld = false;
-        private bool _isMouseDragging = false;
+        [SerializeField] private GridContainer gridContainer;
+
+        public CellPosition HoveredCell { get; private set; }
+        public CellPosition SelectedCell { get; private set; }
+        public CellPosition DragStartCell { get; private set; }
+        public bool IsCellSelected { get; private set; }
+        public bool IsMouseHeld { get; private set; }
+        public bool IsMouseDragging { get; private set; }
 
         public delegate void GridMouseEvent(CellPosition position);
+
         public delegate void GridTurnEvent(CellPosition from, CellPosition to);
+
         public event GridMouseEvent OnMouseEnteredCell;
         public event GridMouseEvent OnMouseExitedCell;
         public event GridMouseEvent OnMouseClickedCell;
         public event GridTurnEvent OnMouseClickedTwoCells;
         public event GridMouseEvent OnMouseStartDrag;
-        public event GridMouseEvent OnMouseUpdateDrag;
+        public event GridMouseEvent OnDeselectCell;
         public event GridTurnEvent OnMouseEndDrag;
-        
-        public bool InputEnabled = false;
 
         private void Awake()
         {
@@ -35,26 +35,26 @@ namespace src.core.managers
 
         public void EnableInput()
         {
-            InputEnabled = true;
+            this.enabled = true;
         }
 
         public void DisableInput()
         {
-            InputEnabled = false;
+            this.enabled = false;
         }
 
 
         public void OnCellHovered(CellPosition pos)
         {
-            _hoveredCell = pos;
+            HoveredCell = pos;
             OnMouseEnteredCell?.Invoke(pos);
         }
 
         public void OnCellMouseExited(CellPosition pos)
         {
-            if (_isMouseHeld)
+            if (IsMouseHeld)
             {
-                _isMouseDragging = true;
+                IsMouseDragging = true;
                 OnMouseStartDrag?.Invoke(pos);
             }
             else
@@ -62,61 +62,60 @@ namespace src.core.managers
                 OnMouseExitedCell?.Invoke(pos);
             }
         }
+
         public void OnCellMouseDown(CellPosition pos)
         {
-            _isMouseHeld = true;
-            
-            _dragStartCell = pos;
+            IsMouseHeld = true;
+
+            DragStartCell = pos;
             OnMouseEnteredCell?.Invoke(pos);
         }
+
         public void OnCellMouseUp(CellPosition pos) // pos is not used
         {
-             
-            if (_isMouseDragging)
+            if (IsMouseDragging)
             {
-                OnMouseEndDrag?.Invoke(_dragStartCell, _hoveredCell);
+                if (DragStartCell != HoveredCell)
+                    OnMouseEndDrag?.Invoke(DragStartCell, HoveredCell);
                 DeselectCell();
             }
-            else if (_hoveredCell == _dragStartCell)
+            else
             {
                 // if doing second click
-                if (_isCellSelected && _selectedCell != _hoveredCell)
+                if (IsCellSelected)
                 {
-                    OnMouseClickedCell?.Invoke(_hoveredCell);
-                    OnMouseClickedTwoCells?.Invoke(_selectedCell, _hoveredCell);
+                    OnMouseClickedCell?.Invoke(HoveredCell);
+                    if (SelectedCell != HoveredCell)
+                        OnMouseClickedTwoCells?.Invoke(SelectedCell, HoveredCell);
                     DeselectCell();
                 }
-                else // selecting first cell
+                else if (!IsCellSelected) // selecting first cell
                 {
-                    if (_selectedCell == _hoveredCell) // clicking same again
+                    if (SelectedCell == HoveredCell) // clicking same again
                     {
                         DeselectCell();
                     }
                     else
                     {
-                        print("Selected cell " + _hoveredCell);
-                        OnMouseClickedCell?.Invoke(_hoveredCell);
-                        _selectedCell = _hoveredCell;
-                        _isCellSelected = true;
+                        print("Selected cell " + HoveredCell);
+                        SelectedCell = HoveredCell;
+                        IsCellSelected = true;
+                        OnMouseClickedCell?.Invoke(HoveredCell);
                     }
                 }
             }
-            _isMouseHeld = false;
-            _isMouseDragging = false;
+
+            IsMouseHeld = false;
+            IsMouseDragging = false;
         }
 
         private void DeselectCell()
         {
-            print("Deselected cell " + _hoveredCell);
-            _isCellSelected = false;
-        }
-
-        private void Update()
-        {
-            if (Input.GetMouseButtonUp(0) && _hoveredCell == null)
-            {
-                DeselectCell();
-            }
+            print("Deselected cell " + HoveredCell);
+            IsCellSelected = false;
+            SelectedCell = new CellPosition();
+            DragStartCell = new CellPosition();
+            OnDeselectCell?.Invoke(HoveredCell);
         }
     }
 }

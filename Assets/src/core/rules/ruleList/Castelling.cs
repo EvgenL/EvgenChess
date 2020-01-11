@@ -14,18 +14,24 @@ namespace src.core.rules.ruleList
         public override bool CanDoTurn(Turn turn)
         {
             if (!MovementTypes[0].PossibleToMove(turn.MovingFrom, turn.MovingTo, turn.board)) return false;
+            if (!turn.board.AttackingSameTeam(turn.MovingFrom, turn.MovingTo)) return false;
             
             Figure fromFig = turn.board.GetFigure(turn.MovingFrom);
             Figure toFig = turn.board.GetFigure(turn.MovingTo);
-
-            if (fromFig == null || toFig == null) return false;
-
-            if (fromFig.Name == FigureName.King && toFig.Name == FigureName.Rook
-                || fromFig.Name == FigureName.Rook && toFig.Name == FigureName.King)
+            Figure king;
+            Figure rook;
+            if (fromFig.Name == FigureName.King && toFig.Name == FigureName.Rook)
             {
-                return !fromFig.EverMoved && !toFig.EverMoved;
+                king = fromFig;
+                rook = toFig;
+                return !king.EverMoved && !rook.EverMoved && !king.UnderAttack;
             }
-
+            else if (fromFig.Name == FigureName.Rook && toFig.Name == FigureName.King)
+            {
+                king = toFig;
+                rook = fromFig;
+                return !king.EverMoved && !rook.EverMoved && !king.UnderAttack;
+            }
             return false;
         }
 

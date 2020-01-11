@@ -7,54 +7,23 @@ namespace src.core.grid
 {
     public class GridContainer : MonoBehaviour
     {
-        public enum CellState
-        {
-            Hovered,
-            Selected,
-            None
-        }
-    
-        [SerializeField] private Sprite _spriteCellActive;
-        [SerializeField] private Sprite _spriteCellSelected;
-    
         private CellRenderer[] _cellRenders;
         private Dictionary<CellPosition, CellRenderer> _cellRendersByPos
             = new Dictionary<CellPosition, CellRenderer>();
-
-
-
-
-        public void PaintCell(CellState state, CellPosition cellPos)
-        {
-            var cell = _cellRendersByPos[cellPos];
-        
-            switch (state)
-            {
-                case CellState.Hovered:
-                    cell.SetSprite(_spriteCellSelected);
-                    break;
-                case CellState.Selected:
-                    cell.SetSprite(_spriteCellActive);
-                    break;
-                case CellState.None:
-                    cell.SetNormalSprite();
-                    break;
-            }
-        }
-
-        public void ClearCellPaint()
-        {
-            foreach (var cellRender in _cellRenders)
-            {
-                cellRender.SetNormalSprite();
-            }
-        }
 
         public Vector3 CellPosToWord(CellPosition pos)
         {
             return _cellRendersByPos[pos].transform.position;
         }
 
+        public CellRenderer GetCellByPos(CellPosition pos)
+        {
+            return _cellRendersByPos[pos];
+        }
+        public CellRenderer[] GetCells()
+        {
+            return _cellRenders;
+        }
 
         private void Awake()
         {

@@ -32,6 +32,8 @@ namespace src.core.rules
                     return false;
                 if (col == to.Col && row == to.Row)
                     return true;
+                if (col > to.Col || row > to.Row)
+                    return false;
             }
         }
     }

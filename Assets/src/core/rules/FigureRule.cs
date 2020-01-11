@@ -12,14 +12,15 @@ namespace src.core.rules
 
         public virtual bool CanDoTurn(Turn turn)
         {
+            if (MyFigureName != turn.MovedFigure.Name) return false;
+            
             bool moveOk = true;
             if (MovementTypes != null)
             {
                 moveOk = MovementTypes.Any(move => move.PossibleToMove(turn.MovingFrom, turn.MovingTo, turn.board));
             }
 
-            return MyFigureName == turn.MovedFigure.Name
-                   && !AttackingSameSide(turn)
+            return !AttackingSameSide(turn)
                    && moveOk;
         }
 

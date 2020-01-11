@@ -6,16 +6,12 @@ namespace src.core
 {
     public class Board
     {
-        public Player Whites;
-        public Player Blacks;
         public FiguresSetup CurrentSetup;
 
         private FiguresContainer _container;
 
-        public Board(Player whites, Player blacks, FiguresContainer container)
+        public Board(FiguresContainer container)
         {
-            Whites = whites;
-            Blacks = blacks;
             CurrentSetup = FiguresSetup.GetBasicSetup();
             _container = container;
             _container.SetBoard(this);

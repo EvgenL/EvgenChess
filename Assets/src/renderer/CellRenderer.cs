@@ -14,18 +14,11 @@ namespace src.renderer
         public event CellMouseEvent OnMouseDowned;
         public event CellMouseEvent OnMouseUpped;
 
-        private Sprite _normalSprite;
         public SpriteRenderer spriteRenderer { get; private set; }
 
         private void Awake()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
-            _normalSprite = spriteRenderer.sprite;
-        }
-
-        public void SetNormalSprite()
-        {
-            spriteRenderer.sprite = _normalSprite;
         }
     
         public void SetSprite(Sprite spr)
