@@ -124,6 +124,7 @@ namespace src.core.figures
 
         public Figure GetFigureByPos(CellPosition pos)
         {
+            if (!CellPosition.Valid(pos.Row, pos.Col)) return null;
             return FiguresOnBoard.FirstOrDefault(figure => figure.CurrentPos == pos);
         }
     }

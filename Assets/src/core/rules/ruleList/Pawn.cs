@@ -7,6 +7,7 @@ namespace src.core.rules.ruleList
         public Pawn()
         {
             MyFigureName = FigureName.Pawn;
+            MovementTypes = new FigureMovementType[] {new PawnMovement() };
         }
         
         public override bool CanDoTurn(Turn turn)

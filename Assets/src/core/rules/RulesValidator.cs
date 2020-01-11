@@ -14,6 +14,8 @@ namespace src.core.rules
             _rules.Add(new King());
             _rules.Add(new Rook());
             _rules.Add(new Knight());
+            _rules.Add(new Queen());
+            _rules.Add(new Bishop());
         }
         
         public Turn ValidateTurn(Turn turn)

@@ -47,12 +47,15 @@
                 <e p="FigureMovementType.cs" t="Include" />
                 <e p="KnightMovement.cs" t="Include" />
                 <e p="LineMovement.cs" t="Include" />
+                <e p="PawnMovement.cs" t="Include" />
               </e>
               <e p="Rule.cs" t="Include" />
               <e p="ruleList" t="Include">
+                <e p="Bishop.cs" t="Include" />
                 <e p="King.cs" t="Include" />
                 <e p="Knight.cs" t="Include" />
                 <e p="Pawn.cs" t="Include" />
+                <e p="Queen.cs" t="Include" />
                 <e p="Rook.cs" t="Include" />
               </e>
               <e p="RulesValidator.cs" t="Include" />

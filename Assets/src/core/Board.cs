@@ -26,6 +26,11 @@ namespace src.core
             return CurrentSetup.GetFigureByPos(pos);
         }
 
+        public bool HasFigure(CellPosition pos)
+        {
+            return GetFigure(pos) != null;
+        }
+
         public bool AttackingSameTeam(CellPosition from, CellPosition to)
         {
             Figure a = GetFigure(from);
