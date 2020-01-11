@@ -1,42 +1,43 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using src.core;
+﻿using src.core.grid;
+using src.core.managers;
 using UnityEngine;
 
-public class GridUiRenderer : MonoBehaviour
+namespace src.renderer
 {
-    [SerializeField] private GridContainer _gridContainer;
-    private InputManager _im;
+    public class GridUiRenderer : MonoBehaviour
+    {
+        [SerializeField] private GridContainer _gridContainer;
+        private InputManager _im;
     
-    private void Start()
-    {
-        _im = InputManager.Instance;
-        Enable();
-    }
+        private void Start()
+        {
+            _im = InputManager.Instance;
+            Enable();
+        }
 
-    public void Enable()
-    {
-        _im.OnMouseEnteredCell += OnCellEntered;
-        _im.OnMouseExitedCell += OnCellExited;
+        public void Enable()
+        {
+            _im.OnMouseEnteredCell += OnCellEntered;
+            _im.OnMouseExitedCell += OnCellExited;
         
-        _gridContainer.ClearCellPaint();
-    }
-    public void Disable()
-    {
-        _im.OnMouseEnteredCell -= OnCellEntered;
-        _im.OnMouseExitedCell -= OnCellExited;
+            _gridContainer.ClearCellPaint();
+        }
+        public void Disable()
+        {
+            _im.OnMouseEnteredCell -= OnCellEntered;
+            _im.OnMouseExitedCell -= OnCellExited;
         
-        _gridContainer.ClearCellPaint();
-    }
+            _gridContainer.ClearCellPaint();
+        }
 
-    private void OnCellEntered(CellPosition pos)
-    {
-        _gridContainer.PaintCell(GridContainer.CellState.Hovered, pos);
-    }
+        private void OnCellEntered(CellPosition pos)
+        {
+            _gridContainer.PaintCell(GridContainer.CellState.Hovered, pos);
+        }
         
-    private void OnCellExited(CellPosition pos)
-    {
-        _gridContainer.PaintCell(GridContainer.CellState.None, pos);
+        private void OnCellExited(CellPosition pos)
+        {
+            _gridContainer.PaintCell(GridContainer.CellState.None, pos);
+        }
     }
 }

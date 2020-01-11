@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using src.core.grid;
 using UnityEngine;
 
 namespace src.core.figures

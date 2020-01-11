@@ -1,7 +1,7 @@
-﻿using System;
+﻿using src.core.grid;
 using UnityEngine;
 
-namespace src.core
+namespace src.core.managers
 {
     public class InputManager : MonoBehaviour
     {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using src.core.grid;
 
 namespace src.core.figures
 {
@@ -123,7 +124,7 @@ namespace src.core.figures
 
         public Figure GetFigureByPos(CellPosition pos)
         {
-            return FiguresOnBoard.First(figure => figure.CurrentPos == pos);
+            return FiguresOnBoard.FirstOrDefault(figure => figure.CurrentPos == pos);
         }
     }
 }

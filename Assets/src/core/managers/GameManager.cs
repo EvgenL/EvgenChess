@@ -1,8 +1,12 @@
-﻿using src.core.figures;
+﻿using System.Collections.Generic;
+using src.core.figures;
+using src.core.grid;
+using src.core.rules;
+using src.input;
+using src.ui;
 using UnityEngine;
-using UnityEngine.Experimental.PlayerLoop;
 
-namespace src.core
+namespace src.core.managers
 {
     public class GameManager : MonoBehaviour
     {
@@ -18,6 +22,9 @@ namespace src.core
         private Player _blacksPlayer;
 
         private Board _board;
+        private RulesValidator _validator;
+        
+        private Queue<Turn> _turnsHistory = new Queue<Turn>();
         
         private void Awake()
         {
@@ -34,10 +41,11 @@ namespace src.core
 
         private void Init()
         {
+            _validator = new RulesValidator();
             _inputManager.DisableInput();
 
-            _inputManager.OnMouseEndDrag += DoTurn;
-            _inputManager.OnMouseClickedTwoCells += DoTurn;
+            _inputManager.OnMouseEndDrag += TryDoTurn;
+            _inputManager.OnMouseClickedTwoCells += TryDoTurn;
         }
         
         public void OpenMenu()
@@ -52,17 +60,30 @@ namespace src.core
             _inputManager.EnableInput();
             _cameraController.EnablePlayerControl();
             
+            _turnsHistory = new Queue<Turn>();
+            
             _whitesPlayer = new Player(ChessSide.Whites);
             _blacksPlayer = new Player(ChessSide.Blacks);
             
-            _board = new Board(_whitesPlayer, _blacksPlayer);
+            _board = new Board(_whitesPlayer, _blacksPlayer, _figuresContainer);
             _figuresContainer.SetBoard(_board);
         }
 
-        private void DoTurn(CellPosition from, CellPosition to)
+        private void TryDoTurn(CellPosition from, CellPosition to)
         {
-            Debug.Log("Doing turn from " + from + " to " + to);
-            //validate();
+            Debug.Log("TryDoTurn from " + from + " to " + to);
+            Turn turn = Turn.CreateIfPossible(_validator, _board, from, to);
+            
+            if (turn != null)
+            {
+                Debug.Log("Doing turn from " + from + " to " + to);
+                _turnsHistory.Enqueue(turn);
+                _board.ApplyTurn(turn);
+            }
+            else
+            {
+                // ui cancel turn
+            }
         }
         
     }

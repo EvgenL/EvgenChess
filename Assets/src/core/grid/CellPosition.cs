@@ -1,77 +1,43 @@
 ﻿using System;
 
-namespace src.core
+namespace src.core.grid
 {
     public struct CellPosition
     {
         public CellPosition(int row, int col) : this()
         {
             Row = row;
-            Col = (char) (col + StaticParameters.BOARD_FIRST_CHAR-1);
+            Col = col;
         }
         public CellPosition(int row, char col) : this()
         {
             Row = row;
-            Col = col;
-        }
-        
-        public int Row
-        {
-            set
-            {
-                if (RowValid(value))
-                    _row = value;
-                else
-                    throw new Exception("Bad row value: " + value);
-            }
-            
-            get => _row;
+            Col = (int)(char.ToUpper(col) - StaticParameters.BOARD_FIRST_CHAR);
         }
 
-        public char Col
-        {
-            set
-            {
-                if (ColValid(value))
-                    _col = char.ToUpper(value);
-                else
-                    throw new Exception("Bad column value: " + value);
-            }
-            
-            get => _col;
-        }
-        
-        private int _row;
-        private char _col;
+        public int Row;
+        public int Col;
 
-        private static bool RowValid(int row)
+        private static bool InBounds(int pos)
         {
-            return row <= StaticParameters.BOARD_SIZE && row >= 1;
-        }
-
-        private static bool ColValid(char col)
-        {
-            char COL = char.ToUpperInvariant(col);
-            return COL <= StaticParameters.BOARD_LAST_CHAR && COL >= StaticParameters.BOARD_FIRST_CHAR;
+            return pos <= StaticParameters.BOARD_SIZE && pos >= 1;
         }
 
         public override string ToString()
         {
-            return Col + Row.ToString();
+            return (char)(Col + StaticParameters.BOARD_FIRST_CHAR) + Row.ToString();
         }
 
         public override bool Equals(object obj)
         {
             if (obj is CellPosition other)
             {
-                return _col == other._col && _row == other._row;
+                return Col == other.Col && Row == other.Row;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
-        
+
         public static bool operator == (CellPosition a, CellPosition b)
         {
             return a.Equals(b);
@@ -80,5 +46,11 @@ namespace src.core
         {
             return !a.Equals(b);
         }
+
+        public bool Valid()
+        {
+            return InBounds(Row) && InBounds(Col);
+        }
+        
     }
 }

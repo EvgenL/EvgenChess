@@ -1,15 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BoardRenderer : MonoBehaviour
+namespace src.renderer
 {
-    void Start()
+    public class BoardRenderer : MonoBehaviour
     {
-    }
+        void Start()
+        {
+        }
 
-    void Update()
-    {
+        void Update()
+        {
         
+        }
     }
 }

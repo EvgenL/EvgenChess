@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace src
+namespace src.input
 {
     public class CameraMouseInput : MonoBehaviour
     {

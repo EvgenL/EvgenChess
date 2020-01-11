@@ -1,4 +1,6 @@
-﻿namespace src.core.figures
+﻿using src.core.grid;
+
+namespace src.core.figures
 {
     public class Figure
     {

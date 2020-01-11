@@ -1,38 +1,38 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using src.core;
+﻿using src.core.managers;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+namespace src.ui
 {
-    [SerializeField] private Button _buttonPlay;
-    [SerializeField] private Button _buttonRules;
-
-    private void Awake()
+    public class MainMenu : MonoBehaviour
     {
-        _buttonPlay.onClick.AddListener(OnButtonStartClick);
-        _buttonRules.onClick.AddListener(OnButtonStartClick);
-    }
+        [SerializeField] private Button _buttonPlay;
+        [SerializeField] private Button _buttonRules;
 
-    public void Show()
-    {
-        gameObject.SetActive(true);
-    }
+        private void Awake()
+        {
+            _buttonPlay.onClick.AddListener(OnButtonStartClick);
+            _buttonRules.onClick.AddListener(OnButtonStartClick);
+        }
 
-    public void Hide()
-    {
-        gameObject.SetActive(false);
-    }
+        public void Show()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Hide()
+        {
+            gameObject.SetActive(false);
+        }
     
-    private void OnButtonStartClick()
-    {
-        GameManager.Instance.StartGame();
-    }
+        private void OnButtonStartClick()
+        {
+            GameManager.Instance.StartGame();
+        }
 
-    private void OnButtonRulesClick()
-    {
+        private void OnButtonRulesClick()
+        {
         
+        }
     }
 }

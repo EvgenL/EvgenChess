@@ -34,6 +34,27 @@
               <e p="InputManager.cs" t="Include" />
             </e>
             <e p="Player.cs" t="Include" />
+            <e p="rules" t="Include">
+              <e p="actions" t="Include">
+                <e p="ChessAction.cs" t="Include" />
+                <e p="MoveAction.cs" t="Include" />
+                <e p="ReplaceAction.cs" t="Include" />
+                <e p="TakeAction.cs" t="Include" />
+              </e>
+              <e p="FigureRule.cs" t="Include" />
+              <e p="Movements" t="Include">
+                <e p="DiagonalMovement.cs" t="Include" />
+                <e p="FigureMovementType.cs" t="Include" />
+                <e p="LineMovement.cs" t="Include" />
+              </e>
+              <e p="Rule.cs" t="Include" />
+              <e p="ruleList" t="Include">
+                <e p="King.cs" t="Include" />
+                <e p="Pawn.cs" t="Include" />
+                <e p="Rook.cs" t="Include" />
+              </e>
+              <e p="RulesValidator.cs" t="Include" />
+            </e>
             <e p="StaticParameters.cs" t="Include" />
             <e p="Turn.cs" t="Include" />
             <e p="TurnsManager.cs" t="Include" />
