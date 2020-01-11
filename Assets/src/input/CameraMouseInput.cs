@@ -28,9 +28,8 @@ namespace src.input
 
         private void Start()
         {
-            
-            zoom = -_thisCamera.position.z;
-            Zoom();
+//            zoom = -_thisCamera.position.z;
+  //          Zoom();
         }
 
         void LateUpdate()

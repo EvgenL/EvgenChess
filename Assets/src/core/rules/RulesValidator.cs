@@ -9,7 +9,9 @@ namespace src.core.rules
         
         public RulesValidator()
         {
-            // add new Castelling
+            _rules.Add(new Castelling());
+//            _rules.Add(new Promotion());
+//            _rules.Add(new TakeByPass());
             _rules.Add(new Pawn());
             _rules.Add(new King());
             _rules.Add(new Rook());

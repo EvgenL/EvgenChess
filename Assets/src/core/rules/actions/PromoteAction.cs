@@ -1,6 +1,6 @@
 ﻿namespace src.core.rules
 {
-    public class ReplaceAction
+    public class PromoteAction
     {
         
     }

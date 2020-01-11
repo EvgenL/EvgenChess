@@ -1,10 +1,25 @@
-﻿namespace src.core.rules
+﻿using src.core.figures;
+using src.core.grid;
+
+namespace src.core.rules
 {
     public class MoveAction : ChessAction
     {
-        public MoveAction (Turn turn) : base(turn.MovedFigure, turn.MovingFrom, turn.MovingTo)
+        public CellPosition From;
+        public CellPosition To;
+
+        public MoveAction(Turn turn) : base(turn.MovedFigure)
         {
-            SortingPower = 1; // move action has to me done after take action and before replace action
+            From = turn.MovingFrom;
+            To = turn.MovingTo;
+        }
+        
+        public MoveAction(CellPosition from, CellPosition to, Figure movedFigure) : base(movedFigure)
+        {
+            SortingPower = 1;
+
+            From = from;
+            To = to;
         }
     }
 }

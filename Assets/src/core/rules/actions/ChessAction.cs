@@ -6,15 +6,11 @@ namespace src.core.rules
     public abstract class ChessAction
     {
         public readonly Figure Fig;
-        public readonly CellPosition From;
-        public readonly CellPosition To;
         public int SortingPower;
 
-        protected ChessAction(Figure fig, CellPosition from, CellPosition to)
+        protected ChessAction(Figure fig)
         {
             Fig = fig;
-            From = from; 
-            To = to; 
         }
     }
 }

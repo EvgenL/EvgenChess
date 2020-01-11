@@ -29,7 +29,7 @@ namespace src.core.rules
             List<ChessAction> actions = new List<ChessAction>();
             if (figureToTake != null)
             {
-                actions.Add(new TakeAction(turn));
+                actions.Add(new TakeAction(figureToTake));
             }
             actions.Add(new MoveAction(turn));
             return actions.ToArray();
@@ -37,7 +37,7 @@ namespace src.core.rules
 
         protected bool AttackingSameSide(Turn turn)
         {
-            return turn.board.GetFigure(turn.MovingTo)?.Side == turn.MovedFigure.Side;
+            return turn.board.AttackingSameTeam(turn.MovingFrom, turn.MovingTo);
         }
     }
 }

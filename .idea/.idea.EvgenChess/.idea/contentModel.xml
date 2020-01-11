@@ -38,7 +38,7 @@
               <e p="actions" t="Include">
                 <e p="ChessAction.cs" t="Include" />
                 <e p="MoveAction.cs" t="Include" />
-                <e p="ReplaceAction.cs" t="Include" />
+                <e p="PromoteAction.cs" t="Include" />
                 <e p="TakeAction.cs" t="Include" />
               </e>
               <e p="FigureRule.cs" t="Include" />
@@ -52,6 +52,7 @@
               <e p="Rule.cs" t="Include" />
               <e p="ruleList" t="Include">
                 <e p="Bishop.cs" t="Include" />
+                <e p="Castelling.cs" t="Include" />
                 <e p="King.cs" t="Include" />
                 <e p="Knight.cs" t="Include" />
                 <e p="Pawn.cs" t="Include" />

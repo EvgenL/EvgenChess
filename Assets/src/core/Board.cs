@@ -49,12 +49,17 @@ namespace src.core
 
         private void ApplyAction(ChessAction action)
         {
-            if (action is MoveAction)
+            if (action is MoveAction move)
             {
                 // Move in "model"
-                CurrentSetup.MoveFigure(action.From, action.To);
+                CurrentSetup.MoveFigure(move.From, move.To);
                 // Move visually
-                _container.MoveFigure(action.From, action.To);
+                _container.MoveFigure(move.From, move.To);
+            }
+            else if (action is TakeAction take)
+            {
+                CurrentSetup.TakeFigure(take.TakenPos);
+                _container.TakeFigure(take.TakenPos);
             }
         }
         
