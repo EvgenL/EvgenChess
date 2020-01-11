@@ -48,7 +48,6 @@ namespace src.core
         {
             _hoveredCell = pos;
             OnMouseEnteredCell?.Invoke(pos);
-            print("OnCellHovered " + pos);
         }
 
         public void OnCellMouseExited(CellPosition pos)
@@ -57,12 +56,10 @@ namespace src.core
             {
                 _isMouseDragging = true;
                 OnMouseStartDrag?.Invoke(pos);
-                print("OnCellMouseExited -> _isMouseHeld " + pos);
             }
             else
             {
                 OnMouseExitedCell?.Invoke(pos);
-                print("OnCellMouseExited -> !_isMouseHeld " + pos);
             }
         }
         public void OnCellMouseDown(CellPosition pos)
@@ -71,27 +68,23 @@ namespace src.core
             
             _dragStartCell = pos;
             OnMouseEnteredCell?.Invoke(pos);
-            print("OnCellMouseDown " + pos);
         }
         public void OnCellMouseUp(CellPosition pos) // pos is not used
         {
              
             if (_isMouseDragging)
             {
-                print("OnMouseEndDrag " + _hoveredCell);
                 OnMouseEndDrag?.Invoke(_dragStartCell, _hoveredCell);
                 DeselectCell();
             }
             else if (_hoveredCell == _dragStartCell)
             {
                 // if doing second click
-                if (_selectedCell != null && _selectedCell != _hoveredCell)
+                if (_isCellSelected && _selectedCell != _hoveredCell)
                 {
-                    print("doing second click " + _hoveredCell);
                     OnMouseClickedCell?.Invoke(_hoveredCell);
                     OnMouseClickedTwoCells?.Invoke(_selectedCell, _hoveredCell);
                     DeselectCell();
-                    _selectedCell = _hoveredCell;
                 }
                 else // selecting first cell
                 {
@@ -104,6 +97,7 @@ namespace src.core
                         print("Selected cell " + _hoveredCell);
                         OnMouseClickedCell?.Invoke(_hoveredCell);
                         _selectedCell = _hoveredCell;
+                        _isCellSelected = true;
                     }
                 }
             }
@@ -114,8 +108,6 @@ namespace src.core
         private void DeselectCell()
         {
             print("Deselected cell " + _hoveredCell);
-            _selectedCell = null;
-            _hoveredCell = null;
             _isCellSelected = false;
         }
 

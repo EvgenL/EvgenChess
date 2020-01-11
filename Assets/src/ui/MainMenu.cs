@@ -28,7 +28,6 @@ public class MainMenu : MonoBehaviour
     
     private void OnButtonStartClick()
     {
-        Hide();
         GameManager.Instance.StartGame();
     }
 

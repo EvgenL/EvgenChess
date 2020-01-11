@@ -16,8 +16,15 @@
         </e>
         <e p="src" t="Include">
           <e p="core" t="Include">
+            <e p="Board.cs" t="Include" />
             <e p="ChessActor.cs" t="Include" />
             <e p="ChessSide.cs" t="Include" />
+            <e p="figures" t="Include">
+              <e p="Figure.cs" t="Include" />
+              <e p="FigureName.cs" t="Include" />
+              <e p="FiguresContainer.cs" t="Include" />
+              <e p="FiguresSetup.cs" t="Include" />
+            </e>
             <e p="grid" t="Include">
               <e p="CellPosition.cs" t="Include" />
               <e p="GridContainer.cs" t="Include" />

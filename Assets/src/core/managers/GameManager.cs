@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using src.core.figures;
+using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
 
 namespace src.core
@@ -11,15 +12,24 @@ namespace src.core
         [SerializeField] private CameraController _cameraController;
         [SerializeField] private GridContainer _gridContainer;
         [SerializeField] private InputManager _inputManager;
+        [SerializeField] private FiguresContainer _figuresContainer;
         
-        private Player WhitesPlayer;
-        private Player BlacksPlayer;
+        private Player _whitesPlayer;
+        private Player _blacksPlayer;
+
+        private Board _board;
         
         private void Awake()
         {
             Init();
             Instance = this;
             OpenMenu();
+        }
+
+        private void Start()
+        {
+            Debug.LogError("Quickstart");
+            StartGame();
         }
 
         private void Init()
@@ -37,11 +47,16 @@ namespace src.core
 
         public void StartGame()
         {
+            _mainMenu.Hide();
+            
             _inputManager.EnableInput();
             _cameraController.EnablePlayerControl();
             
-            WhitesPlayer = new Player(ChessSide.Whites);
-            BlacksPlayer = new Player(ChessSide.Blacks);
+            _whitesPlayer = new Player(ChessSide.Whites);
+            _blacksPlayer = new Player(ChessSide.Blacks);
+            
+            _board = new Board(_whitesPlayer, _blacksPlayer);
+            _figuresContainer.SetBoard(_board);
         }
 
         private void DoTurn(CellPosition from, CellPosition to)

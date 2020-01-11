@@ -16,7 +16,7 @@ public class GridContainer : MonoBehaviour
     [SerializeField] private Sprite _spriteCellActive;
     [SerializeField] private Sprite _spriteCellSelected;
     
-    private CellRenderer[,] _cellRenders;
+    private CellRenderer[] _cellRenders;
     private Dictionary<CellPosition, CellRenderer> _cellRendersByPos
         = new Dictionary<CellPosition, CellRenderer>();
 
@@ -49,10 +49,15 @@ public class GridContainer : MonoBehaviour
         }
     }
 
+    public Vector3 CellPosToWord(CellPosition pos)
+    {
+        return _cellRendersByPos[pos].transform.position;
+    }
+
 
     private void Awake()
     {
-        _cellRenders = new CellRenderer[StaticParameters.BOARD_SIZE, StaticParameters.BOARD_SIZE];
+        _cellRenders = new CellRenderer[StaticParameters.BOARD_SIZE * StaticParameters.BOARD_SIZE];
         
         for (int row = 0; row < StaticParameters.BOARD_SIZE; row++)
         {
@@ -65,7 +70,7 @@ public class GridContainer : MonoBehaviour
                 cell.OnMouseExited += OnCellMouseExited;
                 cell.OnMouseDowned += OnCellMouseDown;
                 cell.OnMouseUpped += OnCellMouseUp;
-                _cellRenders[row, col] = cell;
+                _cellRenders[(row * StaticParameters.BOARD_SIZE) + col] = cell;
                 _cellRendersByPos[cell.Pos] = cell;
             }
         }

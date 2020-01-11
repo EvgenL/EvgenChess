@@ -2,12 +2,17 @@
 
 namespace src.core
 {
-    public class CellPosition
+    public struct CellPosition
     {
-        public CellPosition(int row, int col)
+        public CellPosition(int row, int col) : this()
         {
             Row = row;
-            Col = (char) (col + StaticParameters.BOARD_FIRST_CHAR);
+            Col = (char) (col + StaticParameters.BOARD_FIRST_CHAR-1);
+        }
+        public CellPosition(int row, char col) : this()
+        {
+            Row = row;
+            Col = col;
         }
         
         public int Row
@@ -53,6 +58,27 @@ namespace src.core
         public override string ToString()
         {
             return Col + Row.ToString();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is CellPosition other)
+            {
+                return _col == other._col && _row == other._row;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
+        public static bool operator == (CellPosition a, CellPosition b)
+        {
+            return a.Equals(b);
+        }
+        public static bool operator != (CellPosition a, CellPosition b)
+        {
+            return !a.Equals(b);
         }
     }
 }
