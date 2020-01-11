@@ -9,6 +9,7 @@ namespace src.renderer
         [Header("Sprites")]
         [SerializeField] private Sprite _spriteCellActive;
         [SerializeField] private Sprite _spriteCellSelected;
+        [SerializeField] private Sprite _spriteCellAttacked;
         [SerializeField] private Sprite _spriteCellInactive;
         
         [Header("Container")]
@@ -26,6 +27,7 @@ namespace src.renderer
             _im.OnMouseEnteredCell += OnCellEntered;
             _im.OnMouseExitedCell += OnCellExited;
             _im.OnMouseStartDrag += OnStartDrag;
+            _im.OnMouseEndDrag += OnEndDrag;
             _im.OnMouseClickedCell += OnCellClick;
             _im.OnMouseClickedTwoCells += OnTwoCellClick;
             _im.OnDeselectCell += OnDeselectCell;
@@ -62,6 +64,11 @@ namespace src.renderer
         {
 //            PaintCell(CellState.Selected, pos);
         }
+        private void OnEndDrag(CellPosition a, CellPosition b)
+        {
+            PaintCell(CellState.None, a);
+            PaintCell(CellState.None, b);
+        }
 
         private void OnCellClick(CellPosition pos)
         {
@@ -88,7 +95,16 @@ namespace src.renderer
                 case CellState.None:
                     cell.SetSprite(_spriteCellInactive);
                     break;
+                case CellState.Attacked:
+                    cell.SetSprite(_spriteCellAttacked);
+                    break;
             }
+        }
+
+        public void KingAttacked(CellPosition attacker, CellPosition king)
+        {
+            PaintCell(CellState.Attacked, attacker);
+            PaintCell(CellState.Attacked, king);
         }
 
         private void OnDeselectCell(CellPosition pos)

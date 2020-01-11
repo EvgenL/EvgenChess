@@ -13,8 +13,7 @@ namespace src.core.figures
 
         public bool EverMoved;
         
-        public List<Figure> _attackedBy = new List<Figure>();
-        public bool UnderAttack => _attackedBy.Count > 0;
+        public bool UnderAttack;
 
         public Figure(ChessSide side, FigureName name)
         {
@@ -26,6 +25,17 @@ namespace src.core.figures
         public override string ToString()
         {
             return Name + ":" + CurrentPos;
+        }
+
+        public Figure Copy()
+        {
+            var f = new Figure(Side, Name);
+            f.CurrentPos = CurrentPos;
+            f.PrevPos = PrevPos;
+            f.IsTaken = IsTaken;
+            f.EverMoved = EverMoved;
+            f.UnderAttack = UnderAttack;
+            return f;
         }
     }
 }

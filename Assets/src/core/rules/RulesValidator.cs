@@ -24,18 +24,53 @@ namespace src.core.rules
 
         public Turn ValidateTurn(Turn turn)
         {
-            if (turn.board.HasFigure(turn.MovingFrom) 
-                && turn.board.GetFigure(turn.MovingFrom).Side != WhoseTurn) return null;
+            turn.TurnValid = ActionsValid(turn);
+
+            // check king
+            var tempBoard = turn.board.Copy();
+            tempBoard.ApplyTurn(turn);
+            var attacker = KingUnderAttack(tempBoard);
+            if (attacker != null)
+            {
+                turn.KingAttackedBy = attacker;
+                turn.TurnValid = false;
+            }
             
+            
+            return turn;
+        }
+        
+        
+
+        private Figure KingUnderAttack(Board board)
+        {
+            var enemies = board.GetEnemies(WhoseTurn);
+            var king = board.GetKing(WhoseTurn);
+            
+            foreach (var enemy in enemies)
+            {
+                Turn possibleLethalTurn = Turn.NoValidate(board, enemy.CurrentPos, king.CurrentPos);
+                if (ActionsValid(possibleLethalTurn))
+                {
+                    return enemy;
+                }
+            }
+
+            return null;
+        }
+
+        private bool ActionsValid(Turn turn)
+        {
             foreach (var rule in _rules)
             {
                 if (rule.CanDoTurn(turn))
                 {
                     turn.Actions.AddRange(rule.GetActions(turn));
-                    return turn;
+                    return true;
                 }
             }
-            return null;
+
+            return false;
         }
     }
 }

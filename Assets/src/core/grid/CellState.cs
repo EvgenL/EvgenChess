@@ -4,6 +4,7 @@
     {
         Hovered,
         Selected,
-        None
+        None,
+        Attacked
     }
 }

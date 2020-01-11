@@ -82,7 +82,6 @@ namespace src.core.managers
             {
                 if (DragStartCell != HoveredCell)
                     OnMouseEndDrag?.Invoke(DragStartCell, HoveredCell);
-                DeselectCell();
             }
             else
             {

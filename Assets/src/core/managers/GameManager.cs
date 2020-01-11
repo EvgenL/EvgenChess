@@ -4,6 +4,7 @@ using src.core.figures;
 using src.core.grid;
 using src.core.rules;
 using src.input;
+using src.renderer;
 using src.ui;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ namespace src.core.managers
 
         [SerializeField] private MainMenu _mainMenu;
         [SerializeField] private GameUi _gameUi;
+        [SerializeField] private GridUiRenderer _gridUi;
         [SerializeField] private CameraController _cameraController;
         [SerializeField] private InputManager _inputManager;
         [SerializeField] private FiguresContainer _figuresContainer;
@@ -91,7 +93,7 @@ namespace src.core.managers
             Debug.Log("TryDoTurn from " + from + " to " + to);
             Turn turn = Turn.CreateIfPossible(_validator, _board, from, to);
             
-            if (turn != null)
+            if (turn != null && turn.TurnValid)
             {
                 Debug.Log("Doing turn from " + from + " to " + to);
                 _turnsHistory.Enqueue(turn);
@@ -101,8 +103,12 @@ namespace src.core.managers
             }
             else
             {
-                // todo ui cancel turn
                 _audionManager.PlayNo();
+                if (turn != null && turn.KingAttackedBy != null)
+                {
+                    _gridUi.KingAttacked(turn.KingAttackedBy.CurrentPos, 
+                        _board.GetKing(WhoseTurn).CurrentPos);
+                }
             }
         }
 

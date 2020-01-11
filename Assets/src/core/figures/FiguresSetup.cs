@@ -130,5 +130,16 @@ namespace src.core.figures
             if (!CellPosition.Valid(pos.Row, pos.Col)) return null;
             return FiguresOnBoard.FirstOrDefault(figure => figure.CurrentPos == pos);
         }
+
+        public FiguresSetup Copy()
+        {
+            var newSetup = new FiguresSetup();
+            foreach (var fig in FiguresOnBoard)
+            {
+                newSetup.PutFigure(fig.CurrentPos, fig.Copy());
+            }
+
+            return newSetup;
+        }
     }
 }

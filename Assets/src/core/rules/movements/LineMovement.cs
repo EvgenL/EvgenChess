@@ -28,10 +28,12 @@ namespace src.core.rules
 
             for (int col = from.Col + signCol, row = from.Row + signRow;; col += signCol, row += signRow)
             {
-                if (board.AttackingSameTeam(from, new CellPosition(row, col)))
+                if (!CellPosition.Valid(row, col))
                     return false;
-                if (diffCol == 0 && col == to.Col || diffRow == 0 && row == to.Row)
+                if (diffCol == 0 && row == to.Row || diffRow == 0 && col == to.Col)
                     return true;
+                if (board.HasFigure(new CellPosition(row, col)))
+                    return false;
             }
         }
     }

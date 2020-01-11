@@ -5991,6 +5991,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3148911967926763431, guid: 42f56f0b5bef4b944b6b280c247a5dcb,
+        type: 3}
+      propertyPath: _spriteCellAttacked
+      value: 
+      objectReference: {fileID: 21300000, guid: 08a2666baa5fac74baa797e3235d734a,
+        type: 3}
     - target: {fileID: 8454810954098620004, guid: 42f56f0b5bef4b944b6b280c247a5dcb,
         type: 3}
       propertyPath: m_LocalPosition.x

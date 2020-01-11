@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using src.core.figures;
+using src.core.managers;
+using UnityEngine;
 
 namespace src.core.rules.ruleList
 {

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using src.core;
+using src.core.grid;
 using src.core.managers;
 using UnityEngine;
 using UnityEngine.UI;
@@ -94,7 +95,7 @@ public class GameUi : MonoBehaviour
         _dialog.SetActive(false);
         _sidebar.SetActive(false);
     }
-    
+
     public void ShowSmallText(string text)
     {
         
