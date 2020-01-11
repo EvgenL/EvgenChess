@@ -12,7 +12,7 @@ namespace src.core.grid
         public CellPosition(int row, char col) : this()
         {
             Row = row;
-            Col = (int)(char.ToUpper(col) - StaticParameters.BOARD_FIRST_CHAR);
+            Col = (int)(char.ToUpper(col) - StaticParameters.BOARD_FIRST_CHAR+1);
         }
 
         public int Row;
@@ -25,7 +25,7 @@ namespace src.core.grid
 
         public override string ToString()
         {
-            return (char)(Col + StaticParameters.BOARD_FIRST_CHAR) + Row.ToString();
+            return (char)(Col + StaticParameters.BOARD_FIRST_CHAR-1) + Row.ToString();
         }
 
         public override bool Equals(object obj)
