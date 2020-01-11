@@ -119,6 +119,7 @@ namespace src.core.figures
         {
             var fig = GetFigureByPos(from);
             fig.PrevPos = from;
+            fig.PrevPos = fig.CurrentPos;
             fig.CurrentPos = to;
             fig.EverMoved = true;
             // todo check under attack

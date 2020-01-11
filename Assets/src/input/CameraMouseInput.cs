@@ -14,24 +14,15 @@ namespace src.input
         [SerializeField] private float smoothSpeed = 0.125f;
 
 
-        private float rotationX;
-        private float rotationY;
-        private float rotationXoffs;
-        private float rotationYoffs;
-        private float zoom;
+       private float rotationX;
+       private float rotationY;
+       private float zoom;
 
-        private void OnEnable()
+        void Start()
         {
-            rotationXoffs = _cameraPivot.eulerAngles.x;
-            rotationYoffs = _cameraPivot.eulerAngles.y;
+            rotationX = _cameraPivot.rotation.eulerAngles.x;
+            rotationY = _cameraPivot.rotation.eulerAngles.y;
         }
-
-        private void Start()
-        {
-//            zoom = -_thisCamera.position.z;
-  //          Zoom();
-        }
-
         void LateUpdate()
         {
             if (Input.GetMouseButton(1))
@@ -49,7 +40,7 @@ namespace src.input
         {
             rotationX += Input.GetAxis("Mouse X") * cameraSpeed;
             rotationY += Input.GetAxis("Mouse Y") * cameraSpeed;
-            rotationY = Mathf.Clamp(rotationY, -90, -0);
+            rotationY = Mathf.Clamp(rotationY, -70, -26);
 
             _cameraPivot.rotation = Quaternion.AngleAxis(rotationX, Vector3.up);
             _cameraPivot.rotation *= Quaternion.AngleAxis(rotationY, Vector3.left);

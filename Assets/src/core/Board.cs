@@ -1,4 +1,6 @@
-﻿using src.core.figures;
+﻿using System.Security;
+using System.Xml;
+using src.core.figures;
 using src.core.grid;
 using src.core.rules;
 
@@ -40,9 +42,8 @@ namespace src.core
             foreach (var action in turn.Actions)
             {
                 ApplyAction(action);
-            }    
+            }
         }
-
         private void ApplyAction(ChessAction action)
         {
             if (action is MoveAction move)

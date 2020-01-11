@@ -28,6 +28,7 @@ namespace src.core.managers
         public event GridMouseEvent OnDeselectCell;
         public event GridTurnEvent OnMouseEndDrag;
 
+        private bool inputEnabled = false;
         private void Awake()
         {
             Instance = this;
@@ -35,23 +36,25 @@ namespace src.core.managers
 
         public void EnableInput()
         {
-            this.enabled = true;
+            inputEnabled = true;
         }
 
         public void DisableInput()
         {
-            this.enabled = false;
+            inputEnabled = false;
         }
 
 
         public void OnCellHovered(CellPosition pos)
         {
+            if (!inputEnabled) return;
             HoveredCell = pos;
             OnMouseEnteredCell?.Invoke(pos);
         }
 
         public void OnCellMouseExited(CellPosition pos)
         {
+            if (!inputEnabled) return;
             if (IsMouseHeld)
             {
                 IsMouseDragging = true;
@@ -65,6 +68,7 @@ namespace src.core.managers
 
         public void OnCellMouseDown(CellPosition pos)
         {
+            if (!inputEnabled) return;
             IsMouseHeld = true;
 
             DragStartCell = pos;
@@ -73,6 +77,7 @@ namespace src.core.managers
 
         public void OnCellMouseUp(CellPosition pos) // pos is not used
         {
+            if (!inputEnabled) return;
             if (IsMouseDragging)
             {
                 if (DragStartCell != HoveredCell)
@@ -111,6 +116,7 @@ namespace src.core.managers
 
         private void DeselectCell()
         {
+            if (!inputEnabled) return;
             print("Deselected cell " + HoveredCell);
             IsCellSelected = false;
             SelectedCell = new CellPosition();

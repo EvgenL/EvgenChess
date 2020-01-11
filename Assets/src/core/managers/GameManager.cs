@@ -35,12 +35,6 @@ namespace src.core.managers
             OpenMenu();
         }
 
-        private void Start()
-        {
-            Debug.LogError("Quickstart");
-            StartGame();
-        }
-
         private void Init()
         {
             _validator = new RulesValidator();
@@ -78,12 +72,12 @@ namespace src.core.managers
 
         public void GiveUp()
         {
-            
+            _gameUi.ShowWinMessage(OtherPlayer);
         }
 
         public void Draw()
         {
-            
+            _gameUi.ShowFullscreenText("Draw!");
         }
 
         public bool CellCanBeSelected(CellPosition pos)

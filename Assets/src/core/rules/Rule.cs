@@ -1,4 +1,6 @@
-﻿namespace src.core.rules
+﻿using src.core.figures;
+
+namespace src.core.rules
 {
     public interface Rule
     {

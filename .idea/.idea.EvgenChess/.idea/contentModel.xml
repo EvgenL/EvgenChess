@@ -14,11 +14,9 @@
           </e>
           <e p="README.txt" t="Include" />
         </e>
-        <e p="GameUi.cs" t="Include" />
         <e p="src" t="Include">
           <e p="core" t="Include">
             <e p="Board.cs" t="Include" />
-            <e p="ChessActor.cs" t="Include" />
             <e p="ChessSide.cs" t="Include" />
             <e p="figures" t="Include">
               <e p="Figure.cs" t="Include" />
@@ -36,7 +34,6 @@
               <e p="GameManager.cs" t="Include" />
               <e p="InputManager.cs" t="Include" />
             </e>
-            <e p="Player.cs" t="Include" />
             <e p="rules" t="Include">
               <e p="actions" t="Include">
                 <e p="ChessAction.cs" t="Include" />
@@ -68,6 +65,7 @@
             <e p="Turn.cs" t="Include" />
             <e p="TurnsManager.cs" t="Include" />
           </e>
+          <e p="GameUi.cs" t="Include" />
           <e p="input" t="Include">
             <e p="CameraController.cs" t="Include" />
             <e p="CameraMouseInput.cs" t="Include" />

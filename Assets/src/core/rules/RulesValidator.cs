@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using src.core.figures;
 using src.core.rules.ruleList;
 
 namespace src.core.rules
@@ -7,6 +8,7 @@ namespace src.core.rules
     {
         private List<Rule> _rules = new List<Rule>();
         public ChessSide WhoseTurn;
+
         public RulesValidator()
         {
             _rules.Add(new Castelling());
@@ -19,7 +21,7 @@ namespace src.core.rules
             _rules.Add(new Queen());
             _rules.Add(new Bishop());
         }
-        
+
         public Turn ValidateTurn(Turn turn)
         {
             if (turn.board.HasFigure(turn.MovingFrom) 

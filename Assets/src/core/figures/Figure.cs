@@ -1,4 +1,5 @@
-﻿using src.core.grid;
+﻿using System.Collections.Generic;
+using src.core.grid;
 
 namespace src.core.figures
 {
@@ -11,7 +12,9 @@ namespace src.core.figures
         public bool IsTaken;
 
         public bool EverMoved;
-        public bool UnderAttack;
+        
+        public List<Figure> _attackedBy = new List<Figure>();
+        public bool UnderAttack => _attackedBy.Count > 0;
 
         public Figure(ChessSide side, FigureName name)
         {
@@ -22,7 +25,7 @@ namespace src.core.figures
 
         public override string ToString()
         {
-            return Name.ToString() + ":" + CurrentPos;
+            return Name + ":" + CurrentPos;
         }
     }
 }

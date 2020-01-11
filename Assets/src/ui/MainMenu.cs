@@ -8,17 +8,26 @@ namespace src.ui
     {
         [SerializeField] private Button _buttonPlay;
         [SerializeField] private Button _buttonRules;
+        [SerializeField] private GameObject _menu;
+        [SerializeField] private GameObject _help;
+        [SerializeField] private Button _helpButton;
+
+        
 
         private void Awake()
         {
             _buttonPlay.onClick.AddListener(OnButtonStartClick);
-            _buttonRules.onClick.AddListener(OnButtonStartClick);
+            _buttonRules.onClick.AddListener(OnHelpClick);
+            _helpButton.onClick.AddListener(HideHelp);
         }
 
         public void Show()
         {
             gameObject.SetActive(true);
+            _menu.SetActive(true);
+            _help.SetActive(false);
         }
+
 
         public void Hide()
         {
@@ -30,9 +39,15 @@ namespace src.ui
             GameManager.Instance.StartGame();
         }
 
-        private void OnButtonRulesClick()
+        private void OnHelpClick()
         {
-        
+            _menu.SetActive(false);
+            _help.SetActive(true);
+        }
+        private void HideHelp()
+        {
+            _menu.SetActive(true);
+            _help.SetActive(false);
         }
     }
 }
