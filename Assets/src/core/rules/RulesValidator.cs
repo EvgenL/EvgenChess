@@ -12,7 +12,6 @@ namespace src.core.rules
         public RulesValidator()
         {
             _rules.Add(new Castelling());
-//            _rules.Add(new Promotion());
 //            _rules.Add(new TakeByPass());
             _rules.Add(new Pawn());
             _rules.Add(new King());

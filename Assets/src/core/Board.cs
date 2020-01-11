@@ -82,6 +82,12 @@ namespace src.core
                 CurrentSetup.TakeFigure(take.TakenPos);
                 _container?.TakeFigure(take.TakenPos);
             }
+            else if (action is PromoteAction pro)
+            {
+                var godSaveTheQueen = new Figure(pro.Side, FigureName.Queen);
+                CurrentSetup.PutFigure(pro.Pos, godSaveTheQueen);
+                _container?.PutFigure(pro.Pos, godSaveTheQueen);
+            }
         }
 
         public Board Copy()

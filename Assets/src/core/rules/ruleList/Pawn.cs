@@ -11,5 +11,20 @@ namespace src.core.rules.ruleList
             MyFigureName = FigureName.Pawn;
             MovementTypes = new FigureMovementType[] { new PawnMovement() };
         }
+
+        public override ChessAction[] GetActions(Turn turn)
+        {
+            // promotion
+            if (turn.MovingTo.Row == StaticParameters.BOARD_SIZE || turn.MovingTo.Row == 1)
+            {
+                return new ChessAction[]
+                {
+                    new TakeAction(turn.MovedFigure),
+                    new PromoteAction(turn.MovingTo, turn.MovedFigure.Side, turn.MovedFigure) 
+                };
+            }
+
+            return base.GetActions(turn);
+        }
     }
 }
