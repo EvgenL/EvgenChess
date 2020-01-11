@@ -1527,6 +1527,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 540979593}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &546937895 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3148911967926763431, guid: 42f56f0b5bef4b944b6b280c247a5dcb,
+    type: 3}
+  m_PrefabInstance: {fileID: 8456077155459481418}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaaa68e9fb309de459c650900f4025ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &560535713
 GameObject:
   m_ObjectHideFlags: 0
@@ -1769,6 +1781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainMenu: {fileID: 469356980}
   _gameUi: {fileID: 358507687}
+  _gridUi: {fileID: 546937895}
   _cameraController: {fileID: 1035193162}
   _inputManager: {fileID: 682711315}
   _figuresContainer: {fileID: 1491065897}
@@ -5991,12 +6004,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3148911967926763431, guid: 42f56f0b5bef4b944b6b280c247a5dcb,
-        type: 3}
-      propertyPath: _spriteCellAttacked
-      value: 
-      objectReference: {fileID: 21300000, guid: 08a2666baa5fac74baa797e3235d734a,
-        type: 3}
     - target: {fileID: 8454810954098620004, guid: 42f56f0b5bef4b944b6b280c247a5dcb,
         type: 3}
       propertyPath: m_LocalPosition.x
